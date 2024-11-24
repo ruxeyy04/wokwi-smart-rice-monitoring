@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "author": "Ruxe Pasok",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -76.8, "left": 283.24, "attrs": {} },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": -217.66,
+      "left": 278.63,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot1",
+      "top": -18.2,
+      "left": -1.3,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -129.6,
+      "left": 11.1,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot2",
+      "top": 77.8,
+      "left": -1.3,
+      "rotate": 270,
+      "attrs": {}
+    },
+    { "type": "chip-bh1750", "id": "chip1", "top": -171.78, "left": -24, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd1", "top": -277, "left": 287.8, "rotate": 180, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": -268.04, "left": 249.6, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc2", "top": -200.84, "left": 144, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd2", "top": 192, "left": 143.4, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -273.3,
+      "left": 538.5,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic2",
+      "top": -52.5,
+      "left": 538.5,
+      "rotate": 90,
+      "attrs": {}
+    },
+    { "type": "wokwi-vcc", "id": "vcc3", "top": -306.44, "left": 489.6, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd3", "top": 76.8, "left": 489, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 153.8, "left": 547.2, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "oled1:GND", "gnd1:GND", "black", [ "v-9.6", "h-9.6" ] ],
+    [ "oled1:VCC", "vcc1:VCC", "red", [ "v-19.2", "h-67.05" ] ],
+    [ "oled1:SCL", "esp:22", "green", [ "v-19.2", "h67.5", "v192" ] ],
+    [ "oled1:SDA", "esp:21", "green", [ "v-28.8", "h67.27", "v240" ] ],
+    [ "chip1:VCC", "vcc2:VCC", "red", [ "h0" ] ],
+    [ "chip1:GND", "gnd2:GND", "black", [ "v0", "h69.01" ] ],
+    [ "dht1:GND", "gnd2:GND", "black", [ "h0" ] ],
+    [ "dht1:VCC", "vcc2:VCC", "red", [ "h0" ] ],
+    [ "pot1:VCC", "vcc2:VCC", "red", [ "h0" ] ],
+    [ "pot2:VCC", "vcc2:VCC", "red", [ "h0" ] ],
+    [ "pot2:GND", "gnd2:GND", "black", [ "h0" ] ],
+    [ "pot1:GND", "gnd2:GND", "black", [ "h0" ] ],
+    [ "ultrasonic1:VCC", "vcc3:VCC", "red", [ "h0" ] ],
+    [ "ultrasonic2:VCC", "vcc3:VCC", "red", [ "h0" ] ],
+    [ "ultrasonic1:GND", "gnd3:GND", "black", [ "h-76.8", "v286.8" ] ],
+    [ "ultrasonic2:GND", "gnd3:GND", "black", [ "h0" ] ],
+    [ "relay1:GND", "gnd2:GND", "black", [ "h0" ] ],
+    [ "relay1:VCC", "vcc3:VCC", "red", [ "h-19.2", "v-355.2", "h-28.8", "v-48" ] ],
+    [ "dht1:SDA", "esp:14", "green", [ "h115.2", "v124.7" ] ],
+    [ "pot1:SIG", "esp:34", "green", [ "h192", "v-28.4" ] ],
+    [ "pot2:SIG", "esp:35", "green", [ "h124.8", "v-114.8" ] ],
+    [ "esp:12", "ultrasonic2:TRIG", "green", [ "v0", "h-38.25", "v-172.8", "h297.6", "v96" ] ],
+    [ "esp:27", "ultrasonic2:ECHO", "green", [ "h-28.65", "v-144", "h249.6", "v9.6" ] ],
+    [ "ultrasonic1:TRIG", "esp:4", "green", [ "h-134.4", "v239.6" ] ],
+    [ "esp:13", "ultrasonic1:ECHO", "green", [ "h-19.05", "v-163.2", "h220.8", "v-48" ] ],
+    [
+      "chip1:SDA",
+      "esp:21",
+      "green",
+      [ "h-28.8", "v-38.4", "h278.4", "v105.6", "h192", "v67.2" ]
+    ],
+    [
+      "chip1:SCL",
+      "esp:22",
+      "green",
+      [ "h-19.2", "v-9.6", "h0", "v-9.6", "h288", "v57.6", "h182.4", "v96" ]
+    ],
+    [ "relay1:IN", "esp:2", "green", [ "h-134.4", "v-105.8" ] ]
+  ],
+  "dependencies": {}
+}
