@@ -9,7 +9,7 @@
 #include "dht22.h"
 #include "moisture.h"
 #include "ultrasonic.h"
-
+#include "sendData.h"
 // OLED dimensions
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
@@ -36,6 +36,6 @@ void loop()
     ph_Sensor();
     displayMoistureLevel();
     display.display();
-
+    sendData(lux, moisture, ph_act, lastTemp, lastHumid);
     delay(500); // Wait for 2 seconds before next reading
 }
